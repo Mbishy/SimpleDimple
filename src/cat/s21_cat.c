@@ -1,23 +1,54 @@
+#include <getopt.h>
 #include <stdio.h>
+#include <stdlib.h>
+typedef struct arguments {
+  int b, n, s, E, T, v;
+} arguments;
 
-void print_file(char *name) {
-  FILE *f = fopen(name, "rt");
+arguments *argument_parser(int argc, char *argv[]) {
+  arguments arg = {0};
+  int opt;
+  opt = getopt_long(argc, argv, "bnsEeTtv", NULL, 0);
+  switch (opt) {
+    case 'b':
+      arg.b = 1;
+      break;
 
-  if (f != NULL) {
-    int c = fgetc(f);
-    while (c != EOF) {
-      putc(c, stdout);
-      c = fgetc(f);
-    }
-    fclose(f);
+    case 'b':
+      arg.b = 1;
+      break;
+
+    case 'b':
+      arg.b = 1;
+      break;
+
+    case 'b':
+      arg.b = 1;
+      break;
+
+    case 'b':
+      arg.b = 1;
+      break;
+
+    case 'b':
+      arg.b = 1;
+      break;
+
+    case 'b':
+      arg.b = 1;
+      break;
+
+    case 'b':
+      arg.b = 1;
+      break;
+
+    case 'b':
+      arg.b = 1;
+      break;
+
+    default:
+      break;
   }
 }
 
-int main(int argc, char *argv[]) {
-
-  for (int i = 1; i < argc; i++) {
-    print_file(argv[i]);
-  }
-  
-  return 0; 
-}
+int main(int argc, char *argv[]) { return 0; }

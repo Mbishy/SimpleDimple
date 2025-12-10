@@ -5,14 +5,12 @@ typedef struct arguments {
   int b, n, s, E, T, v;
 } arguments;
 
-arguments *argument_parser(int argc, char *argv[]) {
+arguments* argument_parser(int argc, char* argv[]) {
   arguments arg = {0};
-  struct option long_options[] = {
-    {"number-nonblank", no_argument, NULL, 'b'},
-    {"number", no_argument, NULL, 'n'},
-    {"squeeze-blank", no_argument, NULL, 's'},
-    {0,0,0,0}
-  };
+  struct option long_options[] = {{"number-nonblank", no_argument, NULL, 'b'},
+                                  {"number", no_argument, NULL, 'n'},
+                                  {"squeeze-blank", no_argument, NULL, 's'},
+                                  {0, 0, 0, 0}};
   int opt;
   opt = getopt_long(argc, argv, "bnsEeTt", long_options, 0);
   switch (opt) {
@@ -57,22 +55,23 @@ arguments *argument_parser(int argc, char *argv[]) {
 }
 
 void outline(char* line, int n) {
-  for (int i = 0; i < n; i++)
-  {
+  for (int i = 0; i < n; i++) {
     putchar(line[i]);
   }
 }
 
-void readfile() {
+void readfile() {}
 
-}
-
-int main(int argc, char *argv[]) { 
-
-char* line = NULL;
-size_t memline = 0;
-int read = 0;
-getline();
-
-return 0; 
+int main(int argc, char* argv[]) {
+  FILE* f = fopen(argv[1], "r");
+  char* line = NULL;
+  size_t memline = 0;
+  int read = 0;
+  read = getline(&line, &memline, f);
+  while (read != -1) {
+    outline(line, read);
+    read = getline(&line, &memline, f);
+  }
+  fclose(f);
+  return 0;
 }
